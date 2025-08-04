@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Task Manager</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="theme-toggle-container">
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">🌙</button>
+    <select id="themeSelector" aria-label="Color theme selector">
+      <option value="default">Default</option>
+      <option value="sunset">Sunset</option>
+      <option value="nature">Nature</option>
+    </select>
+  </div>
+
+  <div class="today-date" id="todayDate"></div>
+
+  <div class="container">
+    <h1>Task Manager</h1>
+
+    <div class="form-row">
+      <input type="text" id="taskName" placeholder="Task name" />
+      <input type="date" id="startDate" />
+      <input type="date" id="dueDate" />
+      <select id="priority">
+        <option value="High">High</option>
+        <option value="Medium" selected>Medium</option>
+        <option value="Low">Low</option>
+      </select>
+      <button onclick="addOrUpdateTask()" id="addBtn">Add Task</button>
+    </div>
+
+    <div class="form-row">
+      <select id="filterStatus" onchange="renderTasks()">
+        <option value="All">All</option>
+        <option value="Pending">Pending</option>
+        <option value="Ongoing">Ongoing</option>
+        <option value="Completed">Completed</option>
+      </select>
+      <input
+        type="text"
+        id="searchInput"
+        placeholder="Search by name..."
+        oninput="renderTasks()"
+      />
+      <div id="taskCounter"></div>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Start Date</th>
+          <th>Due Date</th>
+          <th>Priority</th>
+          <th>Status</th>
+          <th>Days Left</th>
+          <th class="last-edited">Last Edited</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody id="taskTableBody"></tbody>
+    </table>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

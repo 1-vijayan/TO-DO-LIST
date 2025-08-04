@@ -1,0 +1,465 @@
+:root {
+  --bg-light: linear-gradient(120deg, #99abaf, #9c9fa3);
+  --bg-dark: #1e1e1e;
+  --text-light: #333;
+  --text-dark: #eee;
+  --card-light: #ffffff;
+  --card-dark: #2c2c2c;
+
+  --pending: #ef9022;
+  --ongoing: #3578e5;
+  --completed: #41b97c;
+}
+
+/* Basic body and container */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: var(--bg-light);
+  color: var(--text-light);
+  padding: 20px;
+  margin: 0;
+  transition: background 0.3s, color 0.3s;
+}
+
+body.dark {
+  background: var(--bg-dark);
+  color: var(--text-dark);
+}
+
+.container {
+  background-color: var(--card-light);
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  max-width: 1000px;
+  margin: 60px auto 0;
+  transition: background-color 0.3s;
+}
+
+body.dark .container {
+  background-color: var(--card-dark);
+}
+
+/* Header */
+h1 {
+  text-align: center;
+  margin-bottom: 10px;
+  color: #3578e5;
+}
+body.dark h1 {
+  color: #7fbcff;
+}
+
+/* Form row */
+.form-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.form-row input,
+.form-row select,
+.form-row button {
+  flex: 1 1 120px;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  outline: none;
+  font-size: 15px;
+}
+
+.form-row button {
+  background-color: #66a6ff;
+  color: white;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.2s;
+}
+
+.form-row button:hover {
+  background-color: #3578e5;
+}
+
+body.dark input,
+body.dark select,
+body.dark button {
+  background-color: #444;
+  color: #fff;
+  border: 1px solid #666;
+}
+
+/* Table styles */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 6px;
+}
+
+th,
+td {
+  padding: 10px;
+  border: 1px solid #ddd;
+  text-align: center;
+  font-size: 15px;
+}
+
+body.dark th,
+body.dark td {
+  border-color: #444;
+}
+
+/* Action buttons */
+.actions button {
+  margin: 0 2px;
+  padding: 5px 9px;
+  border-radius: 5px;
+  font-size: 14px;
+  border: none;
+  background: #edeffd;
+  color: #222;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.actions button:hover {
+  background: #ddd;
+}
+
+body.dark .actions button {
+  background: #444;
+  color: #eee;
+}
+
+body.dark .actions button:hover {
+  background: #666;
+}
+
+/* Completed task style */
+.completed {
+  text-decoration: line-through;
+  color: gray;
+}
+
+/* Priority colors */
+.high-priority {
+  color: red;
+  font-weight: bold;
+}
+.medium-priority {
+  color: orange;
+}
+.low-priority {
+  color: green;
+}
+
+/* Status counters */
+#taskCounter {
+  font-weight: 600;
+  font-size: 16px;
+  flex: 3 1 200px;
+  text-align: right;
+}
+
+#taskCounter .status-pending {
+  color: var(--pending);
+}
+#taskCounter .status-ongoing {
+  color: var(--ongoing);
+}
+#taskCounter .status-completed {
+  color: var(--completed);
+}
+
+/* Placeholder colors */
+::-webkit-input-placeholder {
+  color: #aaa;
+}
+::-moz-placeholder {
+  color: #aaa;
+}
+:-ms-input-placeholder {
+  color: #aaa;
+}
+::placeholder {
+  color: #aaa;
+}
+body.dark ::-webkit-input-placeholder {
+  color: #888;
+}
+body.dark ::-moz-placeholder {
+  color: #888;
+}
+body.dark :-ms-input-placeholder {
+  color: #888;
+}
+body.dark ::placeholder {
+  color: #888;
+}
+
+/* Theme toggle button */
+.theme-toggle-container {
+  position: fixed;
+  top: 16px;
+  left: 30px;
+  z-index: 1001;
+}
+
+.theme-toggle {
+  background: linear-gradient(120deg, #3578e5 0%, #41b97c 100%);
+  color: #fff;
+  border: none;
+  padding: 6px 16px;
+  font-size: 22px;
+  border-radius: 40px;
+  cursor: pointer;
+  box-shadow: 0 2px 12px rgba(53, 120, 229, 0.1);
+  transition: background 0.2s;
+}
+
+body.dark .theme-toggle {
+  background: linear-gradient(120deg, #222 0%, #3578e5 100%);
+  color: #ffe;
+}
+
+/* Status toggle button group */
+.status-toggle {
+  display: flex;
+  gap: 4px;
+  justify-content: center;
+}
+
+.status-btn {
+  padding: 4px 12px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  background: #f7f7f7;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+  font-size: 13px;
+}
+
+.status-btn:disabled,
+.status-btn[disabled] {
+  background: #3578e5;
+  color: #fff;
+  cursor: default;
+  border-color: #2666cf;
+  font-weight: bold;
+}
+
+.status-btn:not(:disabled):hover {
+  background: #e4eefd;
+  color: #2666cf;
+}
+
+body.dark .status-btn {
+  background: #444;
+  color: #eee;
+  border-color: #666;
+}
+
+body.dark .status-btn:disabled {
+  background: #3578e5;
+  color: #fff;
+  border-color: #41b97c;
+}
+
+/* Status colors (optional usage) */
+.status-pending {
+  color: var(--pending);
+  font-weight: 600;
+}
+.status-ongoing {
+  color: var(--ongoing);
+  font-weight: 600;
+}
+.status-completed {
+  color: var(--completed);
+  font-weight: 600;
+}
+
+/* Today's date display */
+.today-date {
+  position: fixed;
+  top: 15px;
+  right: 30px;
+  font-weight: 600;
+  font-size: 18px;
+  color: var(--text-light);
+  background: rgba(255, 255, 255, 0.85);
+  padding: 8px 15px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  user-select: none;
+  transition: background 0.3s, color 0.3s;
+  z-index: 1000;
+}
+
+body.dark .today-date {
+  color: var(--text-dark);
+  background: rgba(44, 44, 44, 0.9);
+  box-shadow: 0 2px 8px rgba(255, 255, 255, 0.1);
+}
+/* Row colors by status - subtle background highlight */
+tr.status-pending {
+  background-color: #fff7e6; /* light orange/yellow */
+}
+
+tr.status-ongoing {
+  background-color: #e6f0ff; /* light blue */
+}
+
+tr.status-completed {
+  background-color: #e6ffe6; /* light green */
+  color: #666; /* slightly dimmed text */
+}
+
+/* Action button colors depending on action */
+.actions button.mark-complete {
+  background-color: #41b97c; /* green */
+  color: white;
+}
+
+.actions button.mark-complete:hover {
+  background-color: #369f67;
+}
+
+.actions button.mark-incomplete {
+  background-color: #ef9022; /* orange */
+  color: white;
+}
+
+.actions button.mark-incomplete:hover {
+  background-color: #c47000;
+}
+/* Pending, Ongoing, Completed row backgrounds - dark and light */
+tr.status-pending {
+  background-color: #fff7e6; /* light mode: light orange */
+}
+tr.status-ongoing {
+  background-color: #e6f0ff; /* light mode: light blue */
+}
+tr.status-completed {
+  background-color: #e6ffe6; /* light mode: light green */
+  color: #555;
+}
+/* Dark mode row tints */
+body.dark tr.status-pending {
+  background-color: #5c4300; /* richer brown/orange */
+}
+body.dark tr.status-ongoing {
+  background-color: #1a2a4d; /* deeper blue */
+}
+body.dark tr.status-completed {
+  background-color: #153d22; /* deep green */
+  color: #a5d6bd;
+}
+
+/* Action button colors */
+.actions button.mark-complete {
+  background-color: #41b97c;
+  color: white;
+  border: 1px solid #368b5e;
+}
+.actions button.mark-complete:hover {
+  background-color: #2b8057;
+}
+
+.actions button.mark-incomplete {
+  background-color: #ef9022;
+  color: white;
+  border: 1px solid #ad6200;
+}
+.actions button.mark-incomplete:hover {
+  background-color: #b56b1d;
+}
+
+/* Remove button is neutral - you can further stylize as you wish: */
+.actions button {
+  transition: background 0.16s, color 0.18s, box-shadow 0.18s;
+}
+
+/* Optional: status toggle button group in dark */
+body.dark .status-btn:not(:disabled) {
+  background: #232b37;
+  color: #aac9ff;
+  border: 1px solid #415c88;
+}
+body.dark .status-btn:disabled {
+  background: #3578e5;
+  color: #fff;
+  border-color: #41b97c;
+}
+.actions button.edit {
+  background-color: #3578e5;
+  color: #fff;
+}
+.actions button.edit:hover {
+  background-color: #295fcc;
+}
+/* Already present: complete, incomplete, remove styling etc. */
+[data-theme='default'] {
+  --bg-light: linear-gradient(120deg, #99abaf, #9c9fa3);
+}
+
+[data-theme='sunset'] {
+  --bg-light: linear-gradient(120deg, #ff6e7f, #bfe9ff);
+}
+
+[data-theme='nature'] {
+  --bg-light: linear-gradient(120deg, #a8e063, #56ab2f);
+}
+/* Last Edited column */
+td.last-edited,
+th.last-edited {
+  font-size: 12px;
+  color: #666;
+  font-style: italic;
+}
+
+body.dark td.last-edited,
+body.dark th.last-edited {
+  color: #bbb;
+}
+tbody tr:hover {
+  background-color: #f0f8ff;
+}
+
+body.dark tbody tr:hover {
+  background-color: #2a2a2a;
+}
+.actions button.edit {
+  background-color: #0078d7;
+  color: #fff;
+  border: 1px solid #005bb5;
+}
+
+.actions button.edit:hover {
+  background-color: #005bb5;
+  color: #fff;
+}
+@media (max-width: 600px) {
+  body {
+    font-size: 14px;
+  }
+
+  .form-row input,
+  .form-row select,
+  .form-row button {
+    font-size: 13px;
+    padding: 8px;
+  }
+
+  table,
+  th,
+  td {
+    font-size: 13px;
+  }
+
+  .today-date {
+    font-size: 14px;
+    padding: 6px 10px;
+  }
+}
